@@ -64,8 +64,8 @@ $settings->set('section', 'key', 'false', 'bool');
 
 $settings->remove('section', 'key');
 
-//Remove cache,  automatically called on set(), remove();
-$settings->invalidateCache();
+$settings->invalidateCache(); // automatically called on set(), remove();  
+
 
 
 
