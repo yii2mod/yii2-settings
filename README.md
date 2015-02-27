@@ -53,7 +53,7 @@ To use the Setting Component, you have to configure the components array in your
     ]
 ```    
 Usage component:
-
+```php
 $settings = Yii::$app->settings;
 
 $value = $settings->get('section', 'key');
@@ -65,7 +65,7 @@ $settings->set('section', 'key', 'false', 'bool');
 $settings->remove('section', 'key');
 
 $settings->invalidateCache(); // automatically called on set(), remove();  
-
+```
 
 
 
