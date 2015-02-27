@@ -1,0 +1,26 @@
+{
+  "name": "yii2mod/yii2-settings",
+  "description": "Simple Yii2 settings extension",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii2",
+    "extension"
+  ],
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Igor Chepurnoy",
+      "email": "igorzfort@gmail.com"
+    }
+  ],
+  "require": {
+    "yiisoft/yii2": "*",
+    "yii2mod/yii2-editable": "*",
+    "yii2mod/yii2-enum": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "yii2mod\\settings\\": ""
+    }
+  }
+}
