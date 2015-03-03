@@ -123,10 +123,18 @@ class Settings extends Component
      */
     protected function getSettingsConfig()
     {
-        $this->loadFromCache();
-        if (empty($this->items)) {
+        if (!$this->cache instanceof Cache) {
             $this->items = $this->model->getSettings();
+        } else {
+            $cacheItems = $this->cache->get($this->cacheKey);
+            if (!empty($cacheItems)) {
+                $this->items = $cacheItems;
+            } else {
+                $this->items = $this->model->getSettings();
+                $this->cache->set($this->cacheKey, $this->items);
+            }
         }
+
         return $this->items;
     }
 
@@ -138,23 +146,6 @@ class Settings extends Component
         if ($this->cache !== null) {
             $this->cache->delete($this->cacheKey);
             $this->items = null;
-        }
-    }
-
-    /**
-     * Load items from cache
-     */
-    protected function loadFromCache()
-    {
-        if ($this->items !== null || !$this->cache instanceof Cache) {
-            return;
-        }
-        $cacheItems = $this->cache->get($this->cacheKey);
-        if (!empty($cacheItems)) {
-            $this->items = $cacheItems;
-        } else {
-            $this->items = $this->model->getSettings();
-            $this->cache->set($this->cacheKey, $this->items);
         }
     }
 
