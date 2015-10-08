@@ -10,7 +10,9 @@ use yii2mod\settings\models\enumerables\SettingStatus;
 use yii2mod\settings\models\enumerables\SettingType;
 use yii2mod\settings\models\SettingModel;
 
-$this->title = 'Settings';
+/* @var $dataProvider \yii\data\ActiveDataProvider */
+/* @var $searchModel \yii2mod\settings\models\search\SettingModelSearch */
+$this->title = Yii::t('app', 'Settings');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="setting-index">
