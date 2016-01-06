@@ -2,7 +2,7 @@
 
 namespace yii2mod\settings\components;
 
-use app\helpers\ArrayHelper;
+use yii\helpers\ArrayHelper;
 use yii\base\Component;
 use yii\caching\Cache;
 use Yii;
