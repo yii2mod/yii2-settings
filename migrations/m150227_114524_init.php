@@ -25,12 +25,11 @@ class m150227_114524_init extends Migration
             'type' => Schema::TYPE_STRING . '(10) NOT NULL',
             'section' => Schema::TYPE_STRING . ' NOT NULL',
             'key' => Schema::TYPE_STRING . ' NOT NULL',
-            'value' => Schema::TYPE_STRING . ' NOT NULL',
+            'value' => Schema::TYPE_TEXT . ' NOT NULL',
             'status' => Schema::TYPE_SMALLINT . ' NOT NULL',
             'createdAt' => Schema::TYPE_INTEGER . ' NOT NULL',
             'updatedAt' => Schema::TYPE_INTEGER . ' NOT NULL',
-        ], $tableOptions
-        );
+        ], $tableOptions);
     }
 
     /**
