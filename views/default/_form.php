@@ -5,6 +5,8 @@ use yii\widgets\ActiveForm;
 use yii2mod\settings\models\enumerables\SettingStatus;
 use yii2mod\settings\models\enumerables\SettingType;
 
+/* @var $this \yii\web\View */
+/* @var $model \yii2mod\settings\models\SettingModel */
 ?>
 
 <div class="setting-form">
@@ -13,7 +15,7 @@ use yii2mod\settings\models\enumerables\SettingType;
 
     <?php echo $form->field($model, 'section')->textInput(['maxlength' => 255]) ?>
     <?php echo $form->field($model, 'key')->textInput(['maxlength' => 255]) ?>
-    <?php echo $form->field($model, 'value')->textInput(['maxlength' => 255]) ?>
+    <?php echo $form->field($model, 'value')->textarea(['rows' => 10]) ?>
     <?php echo $form->field($model, 'status')->dropDownList(SettingStatus::listData()); ?>
     <?php echo $form->field($model, 'type')->dropDownList(SettingType::listData()); ?>
 
