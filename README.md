@@ -63,7 +63,7 @@ $value = $settings->get('section', 'key');
 
 $settings->set('section', 'key', 125.5);
 
-$settings->set('section', 'key', 'false', 'bool');
+$settings->set('section', 'key', 'false', SettingType::BOOLEAN_TYPE);
 
 $settings->remove('section', 'key');
 

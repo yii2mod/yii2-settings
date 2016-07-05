@@ -24,9 +24,7 @@ use yii2mod\settings\models\enumerables\SettingType;
  */
 class SettingModel extends ActiveRecord
 {
-
     /**
-     * Declares the name of the database table associated with this AR class.
      * @return string the table name
      */
     public static function tableName()
@@ -35,7 +33,6 @@ class SettingModel extends ActiveRecord
     }
 
     /**
-     * Returns the validation rules for attributes.
      * @return array validation rules
      */
     public function rules()
@@ -52,7 +49,6 @@ class SettingModel extends ActiveRecord
     }
 
     /**
-     * Returns the attribute labels.
      * @return array attribute labels (name => label)
      */
     public function attributeLabels()
@@ -71,6 +67,7 @@ class SettingModel extends ActiveRecord
 
     /**
      * Returns a list of behaviors that this component should behave as.
+     *
      * @return array
      */
     public function behaviors()
@@ -78,16 +75,15 @@ class SettingModel extends ActiveRecord
         return [
             'timestamp' => [
                 'class' => TimestampBehavior::className(),
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['createdAt', 'updatedAt'],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => 'updatedAt',
-                ]
+                'createdAtAttribute' => 'createdAt',
+                'updatedAtAttribute' => 'updatedAt'
             ]
         ];
     }
 
     /**
      * Creates an [[ActiveQueryInterface]] instance for query purpose.
+     *
      * @return SettingQuery
      */
     public static function find()
@@ -97,7 +93,6 @@ class SettingModel extends ActiveRecord
 
     /**
      * This method is invoked after deleting a record.
-     * @author Igor Chepurnoy
      */
     public function afterDelete()
     {
@@ -141,6 +136,7 @@ class SettingModel extends ActiveRecord
 
     /**
      * Set setting
+     *
      * @param $section
      * @param $key
      * @param $value
@@ -167,9 +163,11 @@ class SettingModel extends ActiveRecord
 
     /**
      * Remove setting
+     *
      * @param $section
      * @param $key
      * @return bool|int|null
+     *
      * @throws \Exception
      */
     public function removeSetting($section, $key)

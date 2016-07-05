@@ -17,8 +17,7 @@ class SettingQuery extends ActiveQuery
      */
     public function active()
     {
-        $this->andWhere(['status' => SettingStatus::ACTIVE]);
-        return $this;
+        return $this->andWhere(['status' => SettingStatus::ACTIVE]);
     }
 
     /**
@@ -27,7 +26,6 @@ class SettingQuery extends ActiveQuery
      */
     public function inactive()
     {
-        $this->andWhere(['status' => SettingStatus::INACTIVE]);
-        return $this;
+        return $this->andWhere(['status' => SettingStatus::INACTIVE]);
     }
 }

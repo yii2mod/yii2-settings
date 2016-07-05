@@ -57,15 +57,18 @@ class Settings extends Component
      */
     public function init()
     {
-        parent::init();
         if ($this->cache !== null) {
             $this->cache = Instance::ensure($this->cache, Cache::className());
         }
+
         $this->model = new $this->modelClass;
+
+        parent::init();
     }
 
     /**
      * Get's the value for the given section and key.
+     *
      * @param $key
      * @param null $section
      * @param null $default
@@ -86,6 +89,7 @@ class Settings extends Component
 
     /**
      * Add a new setting or update an existing one.
+     *
      * @param null $section
      * @param $key
      * @param $value
@@ -103,6 +107,7 @@ class Settings extends Component
 
     /**
      * Remove setting by section and key
+     *
      * @param string $section
      * @param string $key
      * @return bool
@@ -151,6 +156,7 @@ class Settings extends Component
 
     /**
      * Set type for setting
+     *
      * @param $type
      */
     protected function convertSettingType($type)

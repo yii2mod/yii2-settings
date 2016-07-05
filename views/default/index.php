@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Json;
 use yii\widgets\Pjax;
 use yii2mod\editable\EditableColumn;
 use yii2mod\settings\models\enumerables\SettingStatus;
@@ -19,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?php echo Html::encode($this->title) ?></h1>
 
     <p><?php echo Html::a('Create Setting', ['create'], ['class' => 'btn btn-success']); ?></p>
-    <?php Pjax::begin(['timeout' => 7000, 'enablePushState' => false]); ?>
+    <?php Pjax::begin(['timeout' => 10000, 'enablePushState' => false]); ?>
     <?php echo GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
@@ -50,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'type' => 'select',
                     'editableOptions' => function ($model) {
                         return [
-                            'source' => Json::encode(SettingStatus::listData()),
+                            'source' => SettingStatus::listData(),
                             'value' => $model->status,
                         ];
                     },
