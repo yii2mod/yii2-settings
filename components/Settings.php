@@ -5,7 +5,6 @@ namespace yii2mod\settings\components;
 use yii\helpers\ArrayHelper;
 use yii\base\Component;
 use yii\caching\Cache;
-use Yii;
 use yii\di\Instance;
 use yii2mod\settings\models\enumerables\SettingType;
 
@@ -69,14 +68,15 @@ class Settings extends Component
     /**
      * Get's the value for the given section and key.
      *
-     * @param $key
-     * @param null $section
+     * @param string $section
+     * @param string $key
      * @param null $default
      * @return mixed
      */
     public function get($section, $key, $default = null)
     {
         $items = $this->getSettingsConfig();
+
         if (isset($items[$section][$key])) {
             $this->setting = ArrayHelper::getValue($items[$section][$key], 'value');
             $type = ArrayHelper::getValue($items[$section][$key], 'type');
@@ -84,6 +84,7 @@ class Settings extends Component
         } else {
             $this->setting = $default;
         }
+
         return $this->setting;
     }
 
@@ -91,18 +92,36 @@ class Settings extends Component
      * Add a new setting or update an existing one.
      *
      * @param null $section
-     * @param $key
-     * @param $value
+     * @param string $key
+     * @param string $value
      * @param null $type
      * @return bool
      */
     public function set($section, $key, $value, $type = null)
     {
         if ($this->model->setSetting($section, $key, $value, $type)) {
-            $this->invalidateCache();
+            if ($this->invalidateCache()) {
+                return true;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Checking existence of setting
+     *
+     * @param string $section
+     * @param string $key
+     * @return bool
+     */
+    public function has($section, $key)
+    {
+        if (!empty($this->get($section, $key))) {
             return true;
         }
-        return null;
+
+        return false;
     }
 
     /**
@@ -115,9 +134,11 @@ class Settings extends Component
     public function remove($section, $key)
     {
         if ($this->model->removeSetting($section, $key)) {
-            $this->invalidateCache();
-            return true;
+            if ($this->invalidateCache()) {
+                return true;
+            }
         }
+
         return null;
     }
 
@@ -144,7 +165,9 @@ class Settings extends Component
     }
 
     /**
-     * Invalidate cache data
+     * Invalidate the cache
+     *
+     * @return bool
      */
     public function invalidateCache()
     {
@@ -152,6 +175,8 @@ class Settings extends Component
             $this->cache->delete($this->cacheKey);
             $this->items = null;
         }
+
+        return true;
     }
 
     /**

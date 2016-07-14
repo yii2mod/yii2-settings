@@ -46,7 +46,15 @@ class TestCase extends \PHPUnit_Framework_TestCase
                 ],
                 'cache' => [
                     'class' => 'yii\caching\ArrayCache'
-                ]
+                ],
+                'i18n' => [
+                    'translations' => [
+                        'yii2mod.settings' => [
+                            'class' => 'yii\i18n\PhpMessageSource',
+                            'basePath' => '@yii2mod/settings/messages',
+                        ]
+                    ]
+                ],
             ],
         ], $config));
     }
