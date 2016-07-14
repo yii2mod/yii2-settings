@@ -24,8 +24,8 @@ or add
 
 to the require section of your composer.json.
 
-Usage
-------------
+Configuration
+-------------
 Before usage this extension, run init migration.
 
 ./yii migrate/up --migrationPath=@vendor/yii2mod/yii2-settings/migrations
@@ -45,8 +45,6 @@ You can then access settings page by the following URL:
 
 http://localhost/path/to/index.php?r=admin/settings/
 
-Usage Setting Component
-------------
 To use the Setting Component, you have to configure the components array in your application configuration:
 ```php
     'components' => [
@@ -56,7 +54,31 @@ To use the Setting Component, you have to configure the components array in your
         ...
     ]
 ```    
-Usage component:
+## Internationalization
+
+All text and messages introduced in this extension are translatable under category 'yii2mod.settings'.
+You may use translations provided within this extension, using following application configuration:
+
+```php
+return [
+    'components' => [
+        'i18n' => [
+            'translations' => [
+                'yii2mod.settings' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@yii2mod/settings/messages',
+                ],
+                // ...
+            ],
+        ],
+        // ...
+    ],
+    // ...
+];
+```
+
+Usage:
+--------------
 ```php
 $settings = Yii::$app->settings;
 

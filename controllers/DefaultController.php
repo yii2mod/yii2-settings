@@ -18,6 +18,7 @@ class DefaultController extends Controller
 {
     /**
      * Returns a list of behaviors that this component should behave as.
+     *
      * @return array
      */
     public function behaviors()
@@ -26,14 +27,18 @@ class DefaultController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
+                    'index' => ['get'],
+                    'create' => ['get', 'post'],
+                    'update' => ['get', 'post'],
+                    'delete' => ['post']
+                ]
+            ]
         ];
     }
 
     /**
      * Return a list of actions
+     *
      * @return array
      */
     public function actions()
@@ -49,6 +54,7 @@ class DefaultController extends Controller
 
     /**
      * Lists all Settings.
+     *
      * @return mixed
      */
     public function actionIndex()
@@ -64,7 +70,9 @@ class DefaultController extends Controller
 
     /**
      * Creates a new Setting.
+     *
      * If creation is successful, the browser will be redirected to the 'view' page.
+     *
      * @return mixed
      */
     public function actionCreate()
@@ -72,7 +80,7 @@ class DefaultController extends Controller
         $model = new SettingModel();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', 'Setting has been created.');
+            Yii::$app->session->setFlash('success', Yii::t('yii2mod.settings', 'Setting has been created.'));
             return $this->redirect(['index']);
         } else {
             return $this->render('create', [
@@ -83,7 +91,9 @@ class DefaultController extends Controller
 
     /**
      * Updates an existing Setting.
+     *
      * If update is successful, the browser will be redirected to the 'view' page.
+     *
      * @param integer $id
      * @return mixed
      */
@@ -92,7 +102,7 @@ class DefaultController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', 'Setting has been updated.');
+            Yii::$app->session->setFlash('success', Yii::t('yii2mod.settings', 'Setting has been updated.'));
             return $this->redirect(['index']);
         } else {
             return $this->render('update', [
@@ -103,22 +113,27 @@ class DefaultController extends Controller
 
     /**
      * Deletes an existing Setting.
+     *
      * If deletion is successful, the browser will be redirected to the 'index' page.
+     *
      * @param integer $id
      * @return mixed
      */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-        Yii::$app->session->setFlash('success', 'Setting has been deleted.');
+        Yii::$app->session->setFlash('success', Yii::t('yii2mod.settings', 'Setting has been deleted.'));
         return $this->redirect(['index']);
     }
 
     /**
      * Finds a Setting model based on its primary key value.
+     *
      * If the model is not found, a 404 HTTP exception will be thrown.
+     *
      * @param integer $id
      * @return SettingModel the loaded model
+     *
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
@@ -126,7 +141,7 @@ class DefaultController extends Controller
         if (($model = SettingModel::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException(Yii::t('yii2mod.settings', 'The requested page does not exist.'));
         }
     }
 }

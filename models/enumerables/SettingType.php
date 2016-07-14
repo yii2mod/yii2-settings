@@ -16,6 +16,14 @@ class SettingType extends BaseEnum
     const FLOAT_TYPE = 'float';
     const NULL_TYPE = 'null';
 
+    /**
+     * @var string message category
+     */
+    public static $messageCategory = 'yii2mod.settings';
+
+    /**
+     * @var array
+     */
     public static $list = [
         self::STRING_TYPE => 'String',
         self::INTEGER_TYPE => 'Integer',

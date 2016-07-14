@@ -11,13 +11,14 @@ use yii2mod\settings\models\SettingModel;
 
 /* @var $dataProvider \yii\data\ActiveDataProvider */
 /* @var $searchModel \yii2mod\settings\models\search\SettingModelSearch */
-$this->title = Yii::t('app', 'Settings');
+
+$this->title = Yii::t('yii2mod.settings', 'Settings');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="setting-index">
     <h1><?php echo Html::encode($this->title) ?></h1>
 
-    <p><?php echo Html::a('Create Setting', ['create'], ['class' => 'btn btn-success']); ?></p>
+    <p><?php echo Html::a(Yii::t('yii2mod.settings', 'Create Setting'), ['create'], ['class' => 'btn btn-success']); ?></p>
     <?php Pjax::begin(['timeout' => 10000, 'enablePushState' => false]); ?>
     <?php echo GridView::widget([
             'dataProvider' => $dataProvider,
@@ -30,12 +31,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'attribute' => 'type',
                     'filter' => SettingType::listData(),
-                    'filterInputOptions' => ['prompt' => 'Select type', 'class' => 'form-control']
+                    'filterInputOptions' => ['prompt' => Yii::t('yii2mod.settings', 'Select Type'), 'class' => 'form-control']
                 ],
                 [
                     'attribute' => 'section',
                     'filter' => ArrayHelper::map(SettingModel::find()->select('section')->distinct()->all(), 'section', 'section'),
-                    'filterInputOptions' => ['prompt' => 'Select section', 'class' => 'form-control']
+                    'filterInputOptions' => ['prompt' => Yii::t('yii2mod.settings', 'Select Section'), 'class' => 'form-control']
                 ],
                 'key',
                 'value:ntext',
@@ -54,10 +55,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         ];
                     },
                     'filter' => SettingStatus::listData(),
-                    'filterInputOptions' => ['prompt' => 'Select Status', 'class' => 'form-control'],
+                    'filterInputOptions' => ['prompt' => Yii::t('yii2mod.settings', 'Select Status'), 'class' => 'form-control'],
                 ],
                 [
-                    'header' => 'Actions',
+                    'header' => Yii::t('yii2mod.settings', 'Actions'),
                     'class' => 'yii\grid\ActionColumn',
                     'template' => '{update}{delete}',
                 ],

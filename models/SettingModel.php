@@ -54,14 +54,14 @@ class SettingModel extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'type' => Yii::t('app', 'Type'),
-            'section' => Yii::t('app', 'Section'),
-            'key' => Yii::t('app', 'Key'),
-            'value' => Yii::t('app', 'Value'),
-            'status' => Yii::t('app', 'Status'),
-            'createdAt' => Yii::t('app', 'Created date'),
-            'updatedAt' => Yii::t('app', 'Updated date'),
+            'id' => Yii::t('yii2mod.settings', 'ID'),
+            'type' => Yii::t('yii2mod.settings', 'Type'),
+            'section' => Yii::t('yii2mod.settings', 'Section'),
+            'key' => Yii::t('yii2mod.settings', 'Key'),
+            'value' => Yii::t('yii2mod.settings', 'Value'),
+            'status' => Yii::t('yii2mod.settings', 'Status'),
+            'createdAt' => Yii::t('yii2mod.settings', 'Created date'),
+            'updatedAt' => Yii::t('yii2mod.settings', 'Updated date'),
         ];
     }
 
