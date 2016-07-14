@@ -26,35 +26,59 @@ to the require section of your composer.json.
 
 Configuration
 -------------
-Before usage this extension, run init migration.
 
-./yii migrate/up --migrationPath=@vendor/yii2mod/yii2-settings/migrations
+**Database Migrations**
 
-To use this extension, you have to configure the modules array in your application configuration:
+Before usage this extension, we'll also need to prepare the database.
+
+```
+php yii migrate --migrationPath=@vendor/yii2mod/yii2-settings/migrations
+```
+
+**Module Setup**
+
+To access the module, you need to configure the modules array in your application configuration:
 ```php
-  'admin' => [
+'admin' => [
     'modules' => [
-         'settings' => [
-                 'class' => 'yii2mod\settings\Module',
-         ],
-        ...
+        'settings' => [
+            'class' => 'yii2mod\settings\Module',
+        ],
     ],
-  ]
+]
 ```    
-You can then access settings page by the following URL:
-
+> You can then access settings page by the following URL:
 http://localhost/path/to/index.php?r=admin/settings/
 
-To use the Setting Component, you have to configure the components array in your application configuration:
+**Component Setup**
+
+To use the Setting Component, you need to configure the components array in your application configuration:
 ```php
-    'components' => [
-         'settings' => [
-                'class' => 'yii2mod\settings\components\Settings',
-          ],
-        ...
-    ]
-```    
-## Internationalization
+'components' => [
+    'settings' => [
+        'class' => 'yii2mod\settings\components\Settings',
+    ],
+]
+```
+    
+Usage:
+---------
+```php
+$settings = Yii::$app->settings;
+
+$value = $settings->get('section', 'key');
+
+$settings->set('section', 'key', 125.5);
+
+$settings->set('section', 'key', 'false', SettingType::BOOLEAN_TYPE);
+
+$settings->remove('section', 'key');
+
+$settings->invalidateCache(); // automatically called on set(), remove();  
+```
+
+Internationalization
+----------------------
 
 All text and messages introduced in this extension are translatable under category 'yii2mod.settings'.
 You may use translations provided within this extension, using following application configuration:
@@ -75,22 +99,6 @@ return [
     ],
     // ...
 ];
-```
-
-Usage:
---------------
-```php
-$settings = Yii::$app->settings;
-
-$value = $settings->get('section', 'key');
-
-$settings->set('section', 'key', 125.5);
-
-$settings->set('section', 'key', 'false', SettingType::BOOLEAN_TYPE);
-
-$settings->remove('section', 'key');
-
-$settings->invalidateCache(); // automatically called on set(), remove();  
 ```
 
 
