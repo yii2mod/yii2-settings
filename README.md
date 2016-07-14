@@ -72,6 +72,9 @@ $settings->set('section', 'key', 125.5);
 
 $settings->set('section', 'key', 'false', SettingType::BOOLEAN_TYPE);
 
+// Checking existence of setting
+$settings->has('section', 'key');
+
 $settings->remove('section', 'key');
 
 $settings->invalidateCache(); // automatically called on set(), remove();  
