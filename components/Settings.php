@@ -117,11 +117,9 @@ class Settings extends Component
      */
     public function has($section, $key)
     {
-        if (!empty($this->get($section, $key))) {
-            return true;
-        }
+        $setting = $this->get($section, $key);
 
-        return false;
+        return !empty($setting);
     }
 
     /**
