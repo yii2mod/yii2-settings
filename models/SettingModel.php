@@ -7,6 +7,7 @@ use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use Yii;
 use yii2mod\enum\helpers\BooleanEnum;
+use yii2mod\settings\models\enumerables\SettingStatus;
 use yii2mod\settings\models\enumerables\SettingType;
 
 /**
@@ -114,11 +115,14 @@ class SettingModel extends ActiveRecord
 
     /**
      * Return array of settings
+     *
+     * @return array
      */
     public function getSettings()
     {
         $result = [];
         $settings = static::find()->select(['type', 'section', 'key', 'value'])->active()->asArray()->all();
+
         foreach ($settings as $setting) {
             $section = $setting['section'];
             $key = $setting['key'];
@@ -145,19 +149,22 @@ class SettingModel extends ActiveRecord
      */
     public function setSetting($section, $key, $value, $type = null)
     {
-        $settingTypes = SettingType::getConstantsByValue();
-        $model = self::findOne(['section' => $section, 'key' => $key]);
+        $model = static::findOne(['section' => $section, 'key' => $key]);
+
         if (empty($model)) {
-            $model = new self();
+            $model = new static;
         }
+
         $model->section = $section;
         $model->key = $key;
         $model->value = strval($value);
-        if ($type !== null && ArrayHelper::keyExists($type, $settingTypes)) {
+
+        if ($type !== null && ArrayHelper::keyExists($type, SettingType::getConstantsByValue())) {
             $model->type = $type;
         } else {
             $model->type = gettype($value);
         }
+
         return $model->save();
     }
 
@@ -172,11 +179,50 @@ class SettingModel extends ActiveRecord
      */
     public function removeSetting($section, $key)
     {
-        $model = self::findOne(['section' => $section, 'key' => $key]);
+        $model = static::findOne(['section' => $section, 'key' => $key]);
+
         if (!empty($model)) {
             return $model->delete();
         }
+
         return false;
     }
 
+    /**
+     * Activates a setting
+     *
+     * @param $section
+     * @param $key
+     * @return bool
+     */
+    public function activateSetting($section, $key)
+    {
+        $model = static::findOne(['section' => $section, 'key' => $key]);
+
+        if ($model && $model->status === SettingStatus::INACTIVE) {
+            $model->status = SettingStatus::ACTIVE;
+            return $model->save(true, ['status']);
+        }
+
+        return false;
+    }
+
+    /**
+     * Deactivates a setting
+     *
+     * @param $section
+     * @param $key
+     * @return bool
+     */
+    public function deactivateSetting($section, $key)
+    {
+        $model = static::findOne(['section' => $section, 'key' => $key]);
+
+        if ($model && $model->status === SettingStatus::ACTIVE) {
+            $model->status = SettingStatus::INACTIVE;
+            return $model->save(true, ['status']);
+        }
+
+        return false;
+    }
 }

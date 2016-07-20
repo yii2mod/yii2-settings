@@ -37,7 +37,7 @@ class Settings extends Component
     public $cacheKey = 'yii2mod-setting';
 
     /**
-     * @var object setting model
+     * @var \yii2mod\settings\models\SettingModel setting model
      */
     protected $model;
 
@@ -138,6 +138,30 @@ class Settings extends Component
         }
 
         return null;
+    }
+
+    /**
+     * Activates a setting
+     *
+     * @param string $key
+     * @param string $section
+     * @return bool
+     */
+    public function activate($section, $key)
+    {
+        return $this->model->activateSetting($section, $key);
+    }
+
+    /**
+     * Deactivates a setting
+     *
+     * @param string $key
+     * @param string $section
+     * @return bool
+     */
+    public function deactivate($section, $key)
+    {
+        return $this->model->deactivateSetting($section, $key);
     }
 
     /**
