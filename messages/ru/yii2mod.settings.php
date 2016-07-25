@@ -45,7 +45,7 @@ return [
     'Float' => 'Число с плавающей точкой',
     'Null' => 'Null',
     'Setting has been created.' => 'Настройка была сохранена.',
-    'Setting has been updated.' => 'Настройка был обновлена.',
-    'Setting has been deleted.' => 'Настройка был удалена.',
+    'Setting has been updated.' => 'Настройка была обновлена.',
+    'Setting has been deleted.' => 'Настройка была удалена.',
     'The requested page does not exist.' => 'Ошибка 404 - страница не найдена!'
 ];

@@ -1,11 +1,9 @@
 <?php
 
-use yii\db\Schema;
 use yii\db\Migration;
 
 /**
  * Class m150227_114524_init
- * Init settings table
  */
 class m150227_114524_init extends Migration
 {
@@ -21,14 +19,14 @@ class m150227_114524_init extends Migration
         }
 
         $this->createTable('{{%Setting}}', [
-            'id' => Schema::TYPE_PK,
-            'type' => Schema::TYPE_STRING . '(10) NOT NULL',
-            'section' => Schema::TYPE_STRING . ' NOT NULL',
-            'key' => Schema::TYPE_STRING . ' NOT NULL',
-            'value' => Schema::TYPE_TEXT . ' NOT NULL',
-            'status' => Schema::TYPE_SMALLINT . ' NOT NULL',
-            'createdAt' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'updatedAt' => Schema::TYPE_INTEGER . ' NOT NULL',
+            'id' => $this->primaryKey(),
+            'type' => $this->string(10)->notNull(),
+            'section' => $this->string()->notNull(),
+            'key' => $this->string()->notNull(),
+            'value' => $this->text()->notNull(),
+            'status' => $this->boolean(),
+            'createdAt' => $this->integer()->notNull(),
+            'updatedAt' => $this->integer()->notNull()
         ], $tableOptions);
     }
 
