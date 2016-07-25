@@ -2,7 +2,6 @@
 
 namespace yii2mod\settings\tests;
 
-use yii\caching\ArrayCache;
 use yii\helpers\ArrayHelper;
 use Yii;
 
@@ -81,18 +80,18 @@ class TestCase extends \PHPUnit_Framework_TestCase
     protected function setupTestDbData()
     {
         $db = Yii::$app->getDb();
+
         // Structure :
-        $table = 'Setting';
-        $columns = [
+
+        $db->createCommand()->createTable('Setting', [
             'id' => 'pk',
-            'type' => 'string',
-            'section' => 'string',
-            'key' => 'string',
-            'value' => 'text',
-            'status' => 'smallint',
-            'createdAt' => 'integer',
-            'updatedAt' => 'integer',
-        ];
-        $db->createCommand()->createTable($table, $columns)->execute();
+            'type' => 'string(10) not null',
+            'section' => 'string not null',
+            'key' => 'string not null',
+            'value' => 'text not null',
+            'status' => 'integer',
+            'createdAt' => 'integer not null',
+            'updatedAt' => 'integer not null',
+        ])->execute();
     }
 }
