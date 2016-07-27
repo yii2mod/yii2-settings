@@ -1,6 +1,6 @@
 {
   "name": "yii2mod/yii2-settings",
-  "description": "Simple Yii2 settings extension",
+  "description": "Yii2 Settings Module",
   "type": "yii2-extension",
   "keywords": ["yii2", "settings", "config", "storage"],
   "license": "MIT",
