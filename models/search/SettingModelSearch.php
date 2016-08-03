@@ -2,7 +2,6 @@
 
 namespace yii2mod\settings\models\search;
 
-use Yii;
 use yii\data\ActiveDataProvider;
 use yii2mod\settings\models\SettingModel;
 
@@ -13,25 +12,25 @@ use yii2mod\settings\models\SettingModel;
 class SettingModelSearch extends SettingModel
 {
     /**
-     * Returns the validation rules for attributes.
-     * @return array validation rules
+     * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'type', 'section', 'key', 'value', 'status'], 'safe'],
+            [['type', 'section', 'key', 'value', 'status'], 'safe'],
         ];
     }
 
     /**
-     * Setup search function for filtering and sorting
-     * based on fullName field
+     * Creates data provider instance with search query applied
+     *
      * @param $params
+     *
      * @return ActiveDataProvider
      */
     public function search($params)
     {
-        $query = SettingModel::find();
+        $query = self::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -44,7 +43,6 @@ class SettingModelSearch extends SettingModel
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['id' => $this->id]);
         $query->andFilterWhere(['status' => $this->status]);
         $query->andFilterWhere(['section' => $this->section]);
         $query->andFilterWhere(['type' => $this->type]);

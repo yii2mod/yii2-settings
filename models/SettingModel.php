@@ -6,7 +6,6 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use Yii;
-use yii2mod\enum\helpers\BooleanEnum;
 use yii2mod\settings\models\enumerables\SettingStatus;
 use yii2mod\settings\models\enumerables\SettingType;
 
@@ -44,7 +43,8 @@ class SettingModel extends ActiveRecord
             [['value', 'type'], 'string'],
             [['section', 'key'], 'string', 'max' => 255],
             [['status'], 'integer'],
-            ['status', 'default', 'value' => BooleanEnum::YES],
+            ['status', 'default', 'value' => SettingStatus::ACTIVE],
+            ['status', 'in', 'range' => [SettingStatus::ACTIVE, SettingStatus::INACTIVE]],
             [['type'], 'safe'],
         ];
     }
@@ -98,6 +98,7 @@ class SettingModel extends ActiveRecord
     public function afterDelete()
     {
         Yii::$app->settings->invalidateCache();
+
         parent::afterDelete();
     }
 
@@ -110,6 +111,7 @@ class SettingModel extends ActiveRecord
     public function afterSave($insert, $changedAttributes)
     {
         Yii::$app->settings->invalidateCache();
+
         parent::afterSave($insert, $changedAttributes);
     }
 

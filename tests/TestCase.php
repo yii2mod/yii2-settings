@@ -89,7 +89,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
             'section' => 'string not null',
             'key' => 'string not null',
             'value' => 'text not null',
-            'status' => 'integer',
+            'status' => 'smallint not null default 1',
             'createdAt' => 'integer not null',
             'updatedAt' => 'integer not null',
         ])->execute();

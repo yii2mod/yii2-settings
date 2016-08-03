@@ -24,7 +24,7 @@ class m150227_114524_init extends Migration
             'section' => $this->string()->notNull(),
             'key' => $this->string()->notNull(),
             'value' => $this->text()->notNull(),
-            'status' => $this->boolean(),
+            'status' => $this->smallInteger()->notNull()->defaultValue(1),
             'createdAt' => $this->integer()->notNull(),
             'updatedAt' => $this->integer()->notNull()
         ], $tableOptions);
