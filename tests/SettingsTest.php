@@ -30,6 +30,16 @@ class SettingsTest extends TestCase
         $this->assertNull(Yii::$app->settings->get('admin', 'email'), 'Unable to remove the setting!');
     }
 
+    public function testRemoveAllSettings()
+    {
+        Yii::$app->settings->set('admin', 'email', 'admin@mail.com');
+        Yii::$app->settings->set('admin', 'password', '123123');
+
+        $this->assertEquals(2, Yii::$app->settings->removeAll());
+        $this->assertFalse(Yii::$app->settings->has('admin', 'email'));
+        $this->assertFalse(Yii::$app->settings->has('admin', 'password'));
+    }
+
     public function testSetSettingWithType()
     {
         Yii::$app->settings->set('cron', 'activeEmailCommand', 'false', SettingType::BOOLEAN_TYPE);

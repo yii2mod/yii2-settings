@@ -141,6 +141,16 @@ class Settings extends Component
     }
 
     /**
+     * Remove all settings
+     *
+     * @return int
+     */
+    public function removeAll()
+    {
+        return $this->model->removeAllSettings();
+    }
+
+    /**
      * Activates a setting
      *
      * @param string $key

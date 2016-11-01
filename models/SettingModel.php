@@ -191,6 +191,16 @@ class SettingModel extends ActiveRecord
     }
 
     /**
+     * Remove all settings
+     *
+     * @return int
+     */
+    public function removeAllSettings()
+    {
+        return static::deleteAll();
+    }
+
+    /**
      * Activates a setting
      *
      * @param $section
