@@ -84,6 +84,9 @@ $settings->deactivate('section', 'key');
 // Removes a setting
 $settings->remove('section', 'key');
 
+// Removes all settings
+$settings->removeAll();
+
 $settings->invalidateCache(); // automatically called on set(), remove();  
 ```
 
