@@ -83,7 +83,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
         // Structure :
 
-        $db->createCommand()->createTable('Setting', [
+        $db->createCommand()->createTable('setting', [
             'id' => 'pk',
             'type' => 'string(10) not null',
             'section' => 'string not null',

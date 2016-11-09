@@ -29,7 +29,7 @@ class SettingModel extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%Setting}}';
+        return '{{%setting}}';
     }
 
     /**
