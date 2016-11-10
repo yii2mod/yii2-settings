@@ -9,7 +9,7 @@ use yii2mod\settings\models\SettingModel;
  * Class SettingSearch
  * @package yii2mod\settings\models\search
  */
-class SettingModelSearch extends SettingModel
+class SettingSearch extends SettingModel
 {
     /**
      * @inheritdoc

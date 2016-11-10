@@ -2,6 +2,7 @@
 
 namespace yii2mod\settings\components;
 
+use Yii;
 use yii\helpers\ArrayHelper;
 use yii\base\Component;
 use yii\caching\Cache;
@@ -56,13 +57,13 @@ class Settings extends Component
      */
     public function init()
     {
+        parent::init();
+
         if ($this->cache !== null) {
             $this->cache = Instance::ensure($this->cache, Cache::className());
         }
 
-        $this->model = new $this->modelClass;
-
-        parent::init();
+        $this->model = Yii::createObject($this->modelClass);
     }
 
     /**

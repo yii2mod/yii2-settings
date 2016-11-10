@@ -10,7 +10,7 @@ use yii2mod\settings\models\enumerables\SettingType;
 use yii2mod\settings\models\SettingModel;
 
 /* @var $dataProvider \yii\data\ActiveDataProvider */
-/* @var $searchModel \yii2mod\settings\models\search\SettingModelSearch */
+/* @var $searchModel \yii2mod\settings\models\search\SettingSearch */
 
 $this->title = Yii::t('yii2mod.settings', 'Settings');
 $this->params['breadcrumbs'][] = $this->title;
