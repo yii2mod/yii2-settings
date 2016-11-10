@@ -25,7 +25,7 @@ use yii2mod\settings\models\enumerables\SettingType;
 class SettingModel extends ActiveRecord
 {
     /**
-     * @return string the table name
+     * @inheritdoc
      */
     public static function tableName()
     {
@@ -33,7 +33,7 @@ class SettingModel extends ActiveRecord
     }
 
     /**
-     * @return array validation rules
+     * @inheritdoc
      */
     public function rules()
     {
@@ -50,7 +50,7 @@ class SettingModel extends ActiveRecord
     }
 
     /**
-     * @return array attribute labels (name => label)
+     * @inheritdoc
      */
     public function attributeLabels()
     {
@@ -67,9 +67,7 @@ class SettingModel extends ActiveRecord
     }
 
     /**
-     * Returns a list of behaviors that this component should behave as.
-     *
-     * @return array
+     * @inheritdoc
      */
     public function behaviors()
     {
@@ -93,26 +91,23 @@ class SettingModel extends ActiveRecord
     }
 
     /**
-     * This method is invoked after deleting a record.
+     * @inheritdoc
      */
     public function afterDelete()
     {
-        Yii::$app->settings->invalidateCache();
-
         parent::afterDelete();
+
+        Yii::$app->settings->invalidateCache();
     }
 
     /**
-     * This method is called at the end of inserting or updating a record.
-     *
-     * @param bool $insert
-     * @param array $changedAttributes
+     * @inheritdoc
      */
     public function afterSave($insert, $changedAttributes)
     {
-        Yii::$app->settings->invalidateCache();
-
         parent::afterSave($insert, $changedAttributes);
+
+        Yii::$app->settings->invalidateCache();
     }
 
     /**
