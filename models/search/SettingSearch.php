@@ -12,6 +12,11 @@ use yii2mod\settings\models\SettingModel;
 class SettingSearch extends SettingModel
 {
     /**
+     * @var int the default page size.
+     */
+    public $pageSize = 10;
+
+    /**
      * @inheritdoc
      */
     public function rules()
@@ -35,7 +40,7 @@ class SettingSearch extends SettingModel
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 10
+                'pageSize' => $this->pageSize
             ]
         ]);
 

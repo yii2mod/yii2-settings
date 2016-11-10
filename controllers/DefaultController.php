@@ -31,14 +31,14 @@ class DefaultController extends Controller
     public $updateView = '@vendor/yii2mod/yii2-settings/views/default/update';
 
     /**
-     * @var string search class name for settings search
+     * @var string search class name for searching
      */
-    public $settingSearchClass = 'yii2mod\settings\models\search\SettingSearch';
+    public $searchClass = 'yii2mod\settings\models\search\SettingSearch';
 
     /**
-     * @var string settings model class name for CRUD operations
+     * @var string model class name for CRUD operations
      */
-    public $settingModelClass = 'yii2mod\settings\models\SettingModel';
+    public $modelClass = 'yii2mod\settings\models\SettingModel';
 
     /**
      * Returns a list of behaviors that this component should behave as.
@@ -83,7 +83,7 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = Yii::createObject($this->settingSearchClass);
+        $searchModel = Yii::createObject($this->searchClass);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render($this->indexView, [
@@ -101,7 +101,7 @@ class DefaultController extends Controller
      */
     public function actionCreate()
     {
-        $model = Yii::createObject($this->settingModelClass);
+        $model = Yii::createObject($this->modelClass);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', Yii::t('yii2mod.settings', 'Setting has been created.'));
@@ -162,7 +162,7 @@ class DefaultController extends Controller
      */
     protected function findModel($id)
     {
-        $settingModelClass = $this->settingModelClass;
+        $settingModelClass = $this->modelClass;
 
         if (($model = $settingModelClass::findOne($id)) !== null) {
             return $model;

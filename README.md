@@ -43,12 +43,18 @@ To access the module, you need to configure the modules array in your applicatio
     'modules' => [
         'settings' => [
             'class' => 'yii2mod\settings\Module',
-            // Some controller properties maybe need to change.
+            // Also you can override some controller properties in following way:
             'controllerMap' => [
                 'default' => [
                     'class' => 'yii2mod\settings\controllers\DefaultController',
+                    'searchClass' => [
+                        'class' => 'yii2mod\settings\models\search\SettingSearch',
+                        'pageSize' => 25
+                    ],
+                    'modelClass' => 'Your own cms model class',
                     'indexView' => 'custom path to index view file',
-                    'settingSearchClass' => 'Your own search model class'
+                    'createView' => 'custom path to create view file',
+                    'updateView' => 'custom path to update view file',
                 ]
             ]
         ],
