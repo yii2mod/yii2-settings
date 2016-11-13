@@ -51,7 +51,7 @@ To access the module, you need to configure the modules array in your applicatio
                         'class' => 'yii2mod\settings\models\search\SettingSearch',
                         'pageSize' => 25
                     ],
-                    'modelClass' => 'Your own cms model class',
+                    'modelClass' => 'Your own model class',
                     'indexView' => 'custom path to index view file',
                     'createView' => 'custom path to create view file',
                     'updateView' => 'custom path to update view file',
