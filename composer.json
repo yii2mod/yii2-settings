@@ -1,23 +1,32 @@
 {
-  "name": "yii2mod/yii2-settings",
-  "description": "Yii2 Settings Module",
-  "type": "yii2-extension",
-  "keywords": ["yii2", "settings", "config", "storage"],
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Igor Chepurnoy",
-      "email": "igorzfort@gmail.com"
+    "name": "yii2mod/yii2-settings",
+    "description": "Yii2 Settings Module",
+    "type": "yii2-extension",
+    "keywords": [
+        "yii2",
+        "settings",
+        "config",
+        "storage"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Igor Chepurnoy",
+            "email": "igorzfort@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+        "yiisoft/yii2": ">=2.0.8",
+        "yii2mod/yii2-editable": "*",
+        "yii2mod/yii2-enum": "*"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "~1.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "yii2mod\\settings\\": ""
+        }
     }
-  ],
-  "require": {
-    "yiisoft/yii2": ">=2.0.8",
-    "yii2mod/yii2-editable": "*",
-    "yii2mod/yii2-enum": "*"
-  },
-  "autoload": {
-    "psr-4": {
-      "yii2mod\\settings\\": ""
-    }
-  }
 }

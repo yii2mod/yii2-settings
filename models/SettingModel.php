@@ -2,25 +2,24 @@
 
 namespace yii2mod\settings\models;
 
+use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
-use Yii;
 use yii2mod\settings\models\enumerables\SettingStatus;
 use yii2mod\settings\models\enumerables\SettingType;
 
 /**
  * This is the model class for table "Settings".
  *
- * @property integer $id
+ * @property int $id
  * @property string $type
  * @property string $section
  * @property string $key
  * @property string $value
- * @property boolean $status
+ * @property bool $status
  * @property string $createdAt
  * @property string $updatedAt
- *
  */
 class SettingModel extends ActiveRecord
 {
@@ -73,10 +72,10 @@ class SettingModel extends ActiveRecord
     {
         return [
             'timestamp' => [
-                'class' => TimestampBehavior::className(),
+                'class' => TimestampBehavior::class,
                 'createdAtAttribute' => 'createdAt',
-                'updatedAtAttribute' => 'updatedAt'
-            ]
+                'updatedAtAttribute' => 'updatedAt',
+            ],
         ];
     }
 
@@ -142,6 +141,7 @@ class SettingModel extends ActiveRecord
      * @param $key
      * @param $value
      * @param null $type
+     *
      * @return bool
      */
     public function setSetting($section, $key, $value, $type = null)
@@ -149,7 +149,7 @@ class SettingModel extends ActiveRecord
         $model = static::findOne(['section' => $section, 'key' => $key]);
 
         if (empty($model)) {
-            $model = new static;
+            $model = new static();
         }
 
         $model->section = $section;
@@ -170,6 +170,7 @@ class SettingModel extends ActiveRecord
      *
      * @param $section
      * @param $key
+     *
      * @return bool|int|null
      *
      * @throws \Exception
@@ -200,6 +201,7 @@ class SettingModel extends ActiveRecord
      *
      * @param $section
      * @param $key
+     *
      * @return bool
      */
     public function activateSetting($section, $key)
@@ -208,6 +210,7 @@ class SettingModel extends ActiveRecord
 
         if ($model && $model->status === SettingStatus::INACTIVE) {
             $model->status = SettingStatus::ACTIVE;
+
             return $model->save(true, ['status']);
         }
 
@@ -219,6 +222,7 @@ class SettingModel extends ActiveRecord
      *
      * @param $section
      * @param $key
+     *
      * @return bool
      */
     public function deactivateSetting($section, $key)
@@ -227,6 +231,7 @@ class SettingModel extends ActiveRecord
 
         if ($model && $model->status === SettingStatus::ACTIVE) {
             $model->status = SettingStatus::INACTIVE;
+
             return $model->save(true, ['status']);
         }
 

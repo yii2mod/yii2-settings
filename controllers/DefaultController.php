@@ -3,14 +3,15 @@
 namespace yii2mod\settings\controllers;
 
 use Yii;
-use yii2mod\editable\EditableAction;
-use yii2mod\settings\models\SettingModel;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+use yii2mod\editable\EditableAction;
+use yii2mod\settings\models\SettingModel;
 
 /**
  * Class SettingController
+ *
  * @package yii2mod\settings\controllers
  */
 class DefaultController extends Controller
@@ -49,14 +50,14 @@ class DefaultController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'index' => ['get'],
                     'create' => ['get', 'post'],
                     'update' => ['get', 'post'],
-                    'delete' => ['post']
-                ]
-            ]
+                    'delete' => ['post'],
+                ],
+            ],
         ];
     }
 
@@ -69,10 +70,10 @@ class DefaultController extends Controller
     {
         return [
             'edit-setting' => [
-                'class' => EditableAction::className(),
-                'modelClass' => SettingModel::className(),
-                'forceCreate' => false
-            ]
+                'class' => EditableAction::class,
+                'modelClass' => SettingModel::class,
+                'forceCreate' => false,
+            ],
         ];
     }
 
@@ -105,6 +106,7 @@ class DefaultController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', Yii::t('yii2mod.settings', 'Setting has been created.'));
+
             return $this->redirect(['index']);
         } else {
             return $this->render($this->createView, [
@@ -118,7 +120,8 @@ class DefaultController extends Controller
      *
      * If update is successful, the browser will be redirected to the 'view' page.
      *
-     * @param integer $id
+     * @param int $id
+     *
      * @return mixed
      */
     public function actionUpdate($id)
@@ -127,6 +130,7 @@ class DefaultController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', Yii::t('yii2mod.settings', 'Setting has been updated.'));
+
             return $this->redirect(['index']);
         } else {
             return $this->render($this->updateView, [
@@ -140,13 +144,15 @@ class DefaultController extends Controller
      *
      * If deletion is successful, the browser will be redirected to the 'index' page.
      *
-     * @param integer $id
+     * @param int $id
+     *
      * @return mixed
      */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
         Yii::$app->session->setFlash('success', Yii::t('yii2mod.settings', 'Setting has been deleted.'));
+
         return $this->redirect(['index']);
     }
 
@@ -155,7 +161,8 @@ class DefaultController extends Controller
      *
      * If the model is not found, a 404 HTTP exception will be thrown.
      *
-     * @param integer $id
+     * @param int $id
+     *
      * @return SettingModel the loaded model
      *
      * @throws NotFoundHttpException if the model cannot be found

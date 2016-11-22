@@ -47,5 +47,5 @@ return [
     'Setting has been created.' => 'Setting has been created.',
     'Setting has been updated.' => 'Setting has been updated.',
     'Setting has been deleted.' => 'Setting has been deleted.',
-    'The requested page does not exist.' => 'The requested page does not exist.'
+    'The requested page does not exist.' => 'The requested page does not exist.',
 ];

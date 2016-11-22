@@ -7,6 +7,7 @@ use yii2mod\settings\models\enumerables\SettingType;
 
 /**
  * Class SettingsTest
+ *
  * @package yii2mod\settings\tests
  */
 class SettingsTest extends TestCase

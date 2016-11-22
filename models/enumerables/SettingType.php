@@ -6,6 +6,7 @@ use yii2mod\enum\helpers\BaseEnum;
 
 /**
  * Class SettingStatus
+ *
  * @package yii2mod\settings\models\enumerables
  */
 class SettingType extends BaseEnum

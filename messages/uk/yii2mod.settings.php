@@ -47,5 +47,5 @@ return [
     'Setting has been created.' => 'Налаштування було створено.',
     'Setting has been updated.' => 'Налаштування було оновлено.',
     'Setting has been deleted.' => 'Налаштування було видалено.',
-    'The requested page does not exist.' => 'Помилка 404 - сторінка не знайдена!'
+    'The requested page does not exist.' => 'Помилка 404 - сторінка не знайдена!',
 ];

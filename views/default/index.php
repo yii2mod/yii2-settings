@@ -1,8 +1,8 @@
 <?php
 
-use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 use yii\widgets\Pjax;
 use yii2mod\editable\EditableColumn;
 use yii2mod\settings\models\enumerables\SettingStatus;
@@ -30,17 +30,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'attribute' => 'type',
                     'filter' => SettingType::listData(),
-                    'filterInputOptions' => ['prompt' => Yii::t('yii2mod.settings', 'Select Type'), 'class' => 'form-control']
+                    'filterInputOptions' => ['prompt' => Yii::t('yii2mod.settings', 'Select Type'), 'class' => 'form-control'],
                 ],
                 [
                     'attribute' => 'section',
                     'filter' => ArrayHelper::map(SettingModel::find()->select('section')->distinct()->all(), 'section', 'section'),
-                    'filterInputOptions' => ['prompt' => Yii::t('yii2mod.settings', 'Select Section'), 'class' => 'form-control']
+                    'filterInputOptions' => ['prompt' => Yii::t('yii2mod.settings', 'Select Section'), 'class' => 'form-control'],
                 ],
                 'key',
                 'value:ntext',
                 [
-                    'class' => EditableColumn::className(),
+                    'class' => EditableColumn::class,
                     'attribute' => 'status',
                     'url' => ['edit-setting'],
                     'value' => function ($model) {

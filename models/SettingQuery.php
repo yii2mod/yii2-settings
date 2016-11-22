@@ -7,12 +7,14 @@ use yii2mod\settings\models\enumerables\SettingStatus;
 
 /**
  * Class SettingQuery
+ *
  * @package yii2mod\settings\models
  */
 class SettingQuery extends ActiveQuery
 {
     /**
      * Scope for settings with active status
+     *
      * @return $this
      */
     public function active()
@@ -22,6 +24,7 @@ class SettingQuery extends ActiveQuery
 
     /**
      * Scope for settings with inactive status
+     *
      * @return $this
      */
     public function inactive()

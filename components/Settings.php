@@ -3,14 +3,15 @@
 namespace yii2mod\settings\components;
 
 use Yii;
-use yii\helpers\ArrayHelper;
 use yii\base\Component;
 use yii\caching\Cache;
 use yii\di\Instance;
+use yii\helpers\ArrayHelper;
 use yii2mod\settings\models\enumerables\SettingType;
 
 /**
  * Class Settings
+ *
  * @package yii2mod\settings\components
  */
 class Settings extends Component
@@ -27,8 +28,7 @@ class Settings extends Component
      * - a configuration array
      * - a [[yii\caching\Cache]] object
      *
-     * When this is not set, it means caching is not enabled.
-     *
+     * When this is not set, it means caching is not enabled
      */
     public $cache = 'cache';
 
@@ -60,7 +60,7 @@ class Settings extends Component
         parent::init();
 
         if ($this->cache !== null) {
-            $this->cache = Instance::ensure($this->cache, Cache::className());
+            $this->cache = Instance::ensure($this->cache, Cache::class);
         }
 
         $this->model = Yii::createObject($this->modelClass);
@@ -72,6 +72,7 @@ class Settings extends Component
      * @param string $section
      * @param string $key
      * @param null $default
+     *
      * @return mixed
      */
     public function get($section, $key, $default = null)
@@ -96,6 +97,7 @@ class Settings extends Component
      * @param string $key
      * @param string $value
      * @param null $type
+     *
      * @return bool
      */
     public function set($section, $key, $value, $type = null)
@@ -114,6 +116,7 @@ class Settings extends Component
      *
      * @param string $section
      * @param string $key
+     *
      * @return bool
      */
     public function has($section, $key)
@@ -128,6 +131,7 @@ class Settings extends Component
      *
      * @param string $section
      * @param string $key
+     *
      * @return bool
      */
     public function remove($section, $key)
@@ -156,6 +160,7 @@ class Settings extends Component
      *
      * @param string $key
      * @param string $section
+     *
      * @return bool
      */
     public function activate($section, $key)
@@ -168,6 +173,7 @@ class Settings extends Component
      *
      * @param string $key
      * @param string $section
+     *
      * @return bool
      */
     public function deactivate($section, $key)
