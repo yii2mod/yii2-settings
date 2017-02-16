@@ -110,7 +110,7 @@ Manage custom settings
 You can use your own form model to manage custom settings for your web application via `SettingsAction`. 
 To use the `SettingsAction` class you need to follow the following steps:
 
-1. Create your own model, for example:
+1) Create your own model, for example:
 
 ```php
 <?php
@@ -155,7 +155,7 @@ class ConfigurationForm extends Model
 }
 ```
 
-2. Create view file, named `settings.php` with the following content:
+2) Create view file, named `settings.php` with the following content:
 
 ```php
 <?php
@@ -180,7 +180,7 @@ $this->title = Yii::t('app', 'Manage Application Settings');
 
 ```
 
-3. Add settings action to your controller class as follows:
+3) Add settings action to your controller class as follows:
 
 ```php
 <?php
@@ -218,7 +218,7 @@ class SiteController extends Controller
 }
 ```
 
-Now you can access to the settings page by the following URL: http://localhost/path/to/index.php?r=site/manage-settings/
+**Now you can access to the settings page by the following URL: http://localhost/path/to/index.php?r=site/manage-settings/**
                        
 
 
