@@ -218,7 +218,7 @@ class SiteController extends Controller
 }
 ```
 
-**Now you can access to the settings page by the following URL: http://localhost/path/to/index.php?r=site/manage-settings/**
+*Now you can access to the settings page by the following URL: http://localhost/path/to/index.php?r=site/manage-settings/*
                        
 
 
