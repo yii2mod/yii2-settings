@@ -104,6 +104,124 @@ $settings->removeAll();
 $settings->invalidateCache(); // automatically called on set(), remove();  
 ```
 
+Manage custom settings
+----------------------
+
+You can use your own form model to manage custom settings for your web application via `SettingsAction`. 
+To use the `SettingsAction` class you need to follow the following steps:
+
+1. Create your own model, for example:
+
+```php
+<?php
+
+namespace app\models\forms;
+
+use Yii;
+use yii\base\Model;
+
+class ConfigurationForm extends Model
+{
+    /**
+     * @var string application name
+     */
+    public $appName;
+
+    /**
+     * @var string admin email
+     */
+    public $adminEmail;
+
+    /**
+     * @inheritdoc
+     */
+    public function rules(): array
+    {
+        return [
+            [['appName', 'adminEmail'], 'required'],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels(): array
+    {
+        return [
+            'appName' => Yii::t('app', 'Application Name'),
+            'adminEmail' => Yii::t('app', 'Admin Email'),
+        ];
+    }
+}
+```
+
+2. Create view file, named `settings.php` with the following content:
+
+```php
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
+/* @var $model \app\models\forms\ConfigurationForm */
+/* @var $this \yii\web\View */
+
+$this->title = Yii::t('app', 'Manage Application Settings');
+?>
+<?php $form = ActiveForm::begin(); ?>
+
+<?php echo $form->field($model, 'appName'); ?>
+
+<?php echo $form->field($model, 'adminEmail'); ?>
+
+<?php echo Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+
+<?php ActiveForm::end(); ?>
+
+```
+
+3. Add settings action to your controller class as follows:
+
+```php
+<?php
+
+namespace app\controllers;
+
+use yii\web\Controller;
+
+/**
+ * Class SiteController
+ *
+ * @package app\controllers
+ */
+class SiteController extends Controller
+{
+    /**
+     * @inheritdoc
+     */
+    public function actions()
+    {
+        return [
+            'manage-settings' => [
+                'class' => \yii2mod\settings\actions\SettingsAction::class,
+                // also you can use events as follows:
+                'on beforeSave' => function ($event) {
+                    // your custom code
+                },
+                'on afterSave' => function ($event) {
+                    // your custom code
+                },
+                'modelClass' => \app\models\forms\ConfigurationForm::class,
+            ],
+        ];
+    }
+}
+```
+
+Now you can access to the settings page by the following URL: http://localhost/path/to/index.php?r=site/manage-settings/
+                       
+
+
 Internationalization
 ----------------------
 
