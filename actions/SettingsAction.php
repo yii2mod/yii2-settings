@@ -96,6 +96,8 @@ class SettingsAction extends Action
             if ($this->successMessage !== null) {
                 Yii::$app->session->setFlash('success', $this->successMessage);
             }
+
+            return $this->controller->refresh();
         }
 
         $this->prepareModel($model);
