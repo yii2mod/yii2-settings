@@ -5,6 +5,7 @@ namespace yii2mod\settings\actions;
 use Yii;
 use yii\base\Action;
 use yii\base\InvalidConfigException;
+use yii\base\Model;
 use yii\helpers\ArrayHelper;
 use yii2mod\settings\events\FormEvent;
 
@@ -31,6 +32,19 @@ class SettingsAction extends Action
      * @var string class name of the model which will be used to validate the attributes
      */
     public $modelClass;
+
+    /**
+     * @var callable a PHP callable that will be called to prepare a model.
+     * If not set, [[prepareModel()]] will be used instead.
+     * The signature of the callable should be:
+     *
+     * ```php
+     * function ($model) {
+     *      // $model is the object which will be used to validate the attributes
+     * }
+     * ```
+     */
+    public $prepareModel;
 
     /**
      * @var string message to be set on successful save a model
@@ -66,6 +80,7 @@ class SettingsAction extends Action
      */
     public function run()
     {
+        /* @var $model Model */
         $model = Yii::createObject($this->modelClass);
         $event = Yii::createObject(['class' => FormEvent::class, 'form' => $model]);
 
@@ -83,12 +98,26 @@ class SettingsAction extends Action
             }
         }
 
-        foreach ($model->attributes() as $attribute) {
-            $model->{$attribute} = Yii::$app->settings->get($model->formName(), $attribute);
-        }
+        $this->prepareModel($model);
 
         return $this->controller->render($this->view, ArrayHelper::merge($this->viewParams, [
             'model' => $model,
         ]));
+    }
+
+    /**
+     * Prepares the model which will be used to validate the attributes
+     *
+     * @param Model $model
+     */
+    protected function prepareModel(Model $model)
+    {
+        if ($this->prepareModel !== null) {
+            call_user_func($this->prepareModel, $model);
+        } else {
+            foreach ($model->attributes() as $attribute) {
+                $model->{$attribute} = Yii::$app->settings->get($model->formName(), $attribute);
+            }
+        }
     }
 }
