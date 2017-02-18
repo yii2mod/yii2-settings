@@ -4,6 +4,7 @@ namespace yii2mod\settings\tests;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use yii2mod\settings\tests\data\Controller;
 
 /**
  * This is the base class for all yii framework unit tests.
@@ -30,7 +31,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
      * @param array $config The application configuration, if needed
      * @param string $appClass name of the application class to create
      */
-    protected function mockApplication($config = [], $appClass = '\yii\console\Application')
+    protected function mockApplication($config = [], $appClass = '\yii\web\Application')
     {
         new $appClass(ArrayHelper::merge([
             'id' => 'testapp',
@@ -40,6 +41,10 @@ class TestCase extends \PHPUnit_Framework_TestCase
                 'db' => [
                     'class' => 'yii\db\Connection',
                     'dsn' => 'sqlite::memory:',
+                ],
+                'request' => [
+                    'hostInfo' => 'http://domain.com',
+                    'scriptUrl' => 'index.php',
                 ],
                 'settings' => [
                     'class' => 'yii2mod\settings\components\Settings',
@@ -73,6 +78,16 @@ class TestCase extends \PHPUnit_Framework_TestCase
     protected function destroyApplication()
     {
         Yii::$app = null;
+    }
+
+    /**
+     * @param array $config controller config
+     *
+     * @return Controller controller instance
+     */
+    protected function createController($config = [])
+    {
+        return new Controller('test', Yii::$app, $config);
     }
 
     /**
