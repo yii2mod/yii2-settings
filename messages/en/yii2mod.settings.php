@@ -23,6 +23,7 @@ return [
     'Key' => 'Key',
     'Value' => 'Value',
     'Status' => 'Status',
+    'Description' => 'Description',
     'Created date' => 'Created date',
     'Updated date' => 'Updated date',
     'Settings' => 'Settings',

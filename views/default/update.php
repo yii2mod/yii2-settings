@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = Yii::t('yii2mod.settings', 'Update Setting');
 ?>
 <div class="setting-update">
 
-    <h3><?php echo Html::encode($this->title) ?></h3>
+    <h3><?php echo Html::encode($this->title); ?></h3>
 
     <?php echo $this->render('_form', [
         'model' => $model,

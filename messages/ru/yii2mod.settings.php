@@ -23,6 +23,7 @@ return [
     'Key' => 'Ключ',
     'Value' => 'Значение',
     'Status' => 'Статус',
+    'Description' => 'Описание',
     'Created date' => 'Дата создания',
     'Updated date' => 'Дата обновления',
     'Settings' => 'Настройки',
