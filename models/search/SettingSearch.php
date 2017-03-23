@@ -23,7 +23,7 @@ class SettingSearch extends SettingModel
     public function rules()
     {
         return [
-            [['type', 'section', 'key', 'value', 'status'], 'safe'],
+            [['type', 'section', 'key', 'value', 'status', 'description'], 'safe'],
         ];
     }
 
@@ -45,15 +45,21 @@ class SettingSearch extends SettingModel
             ],
         ]);
 
-        if (!($this->load($params) && $this->validate())) {
+        $this->load($params);
+
+        if (!$this->validate()) {
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['status' => $this->status]);
-        $query->andFilterWhere(['section' => $this->section]);
-        $query->andFilterWhere(['type' => $this->type]);
-        $query->andFilterWhere(['like', 'key', $this->key]);
-        $query->andFilterWhere(['like', 'value', $this->value]);
+        $query->andFilterWhere([
+            'status' => $this->status,
+            'section' => $this->section,
+            'type' => $this->type,
+        ]);
+
+        $query->andFilterWhere(['like', 'key', $this->key])
+            ->andFilterWhere(['like', 'value', $this->value])
+            ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

@@ -9,7 +9,7 @@ use yii2mod\settings\tests\data\Controller;
 /**
  * This is the base class for all yii framework unit tests.
  */
-class TestCase extends \PHPUnit_Framework_TestCase
+class TestCase extends \PHPUnit\Framework\TestCase
 {
     protected function setUp()
     {
@@ -106,6 +106,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
             'key' => 'string not null',
             'value' => 'text not null',
             'status' => 'smallint not null default 1',
+            'description' => 'string',
             'createdAt' => 'integer not null',
             'updatedAt' => 'integer not null',
         ])->execute();

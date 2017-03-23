@@ -56,6 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filter' => SettingStatus::listData(),
                     'filterInputOptions' => ['prompt' => Yii::t('yii2mod.settings', 'Select Status'), 'class' => 'form-control'],
                 ],
+                'description:ntext',
                 [
                     'header' => Yii::t('yii2mod.settings', 'Actions'),
                     'class' => 'yii\grid\ActionColumn',

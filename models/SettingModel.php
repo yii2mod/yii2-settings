@@ -18,6 +18,7 @@ use yii2mod\settings\models\enumerables\SettingType;
  * @property string $key
  * @property string $value
  * @property bool $status
+ * @property string $description
  * @property string $createdAt
  * @property string $updatedAt
  */
@@ -40,10 +41,10 @@ class SettingModel extends ActiveRecord
             [['section', 'key', 'value'], 'required'],
             [['section', 'key'], 'unique', 'targetAttribute' => ['section', 'key']],
             [['value', 'type'], 'string'],
-            [['section', 'key'], 'string', 'max' => 255],
+            [['section', 'key', 'description'], 'string', 'max' => 255],
             [['status'], 'integer'],
             ['status', 'default', 'value' => SettingStatus::ACTIVE],
-            ['status', 'in', 'range' => [SettingStatus::ACTIVE, SettingStatus::INACTIVE]],
+            ['status', 'in', 'range' => SettingStatus::getConstantsByName()],
             [['type'], 'safe'],
         ];
     }
@@ -60,6 +61,7 @@ class SettingModel extends ActiveRecord
             'key' => Yii::t('yii2mod.settings', 'Key'),
             'value' => Yii::t('yii2mod.settings', 'Value'),
             'status' => Yii::t('yii2mod.settings', 'Status'),
+            'description' => Yii::t('yii2mod.settings', 'Description'),
             'createdAt' => Yii::t('yii2mod.settings', 'Created date'),
             'updatedAt' => Yii::t('yii2mod.settings', 'Updated date'),
         ];
