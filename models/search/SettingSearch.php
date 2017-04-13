@@ -30,11 +30,11 @@ class SettingSearch extends SettingModel
     /**
      * Creates data provider instance with search query applied
      *
-     * @param $params
+     * @param array $params
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search(array $params)
     {
         $query = self::find();
 
