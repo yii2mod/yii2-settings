@@ -10,7 +10,7 @@ use yii2mod\settings\models\enumerables\SettingStatus;
 use yii2mod\settings\models\enumerables\SettingType;
 
 /**
- * This is the model class for table "Settings".
+ * This is the model class for table "{{%setting}}".
  *
  * @property int $id
  * @property string $type
@@ -19,8 +19,8 @@ use yii2mod\settings\models\enumerables\SettingType;
  * @property string $value
  * @property bool $status
  * @property string $description
- * @property string $createdAt
- * @property string $updatedAt
+ * @property string $created_at
+ * @property string $updated_at
  */
 class SettingModel extends ActiveRecord
 {
@@ -62,8 +62,8 @@ class SettingModel extends ActiveRecord
             'value' => Yii::t('yii2mod.settings', 'Value'),
             'status' => Yii::t('yii2mod.settings', 'Status'),
             'description' => Yii::t('yii2mod.settings', 'Description'),
-            'createdAt' => Yii::t('yii2mod.settings', 'Created date'),
-            'updatedAt' => Yii::t('yii2mod.settings', 'Updated date'),
+            'created_at' => Yii::t('yii2mod.settings', 'Created Date'),
+            'updated_at' => Yii::t('yii2mod.settings', 'Updated Date'),
         ];
     }
 
@@ -73,11 +73,7 @@ class SettingModel extends ActiveRecord
     public function behaviors()
     {
         return [
-            'timestamp' => [
-                'class' => TimestampBehavior::class,
-                'createdAtAttribute' => 'createdAt',
-                'updatedAtAttribute' => 'updatedAt',
-            ],
+            TimestampBehavior::class,
         ];
     }
 
