@@ -88,7 +88,7 @@ class SettingsAction extends Action
             $this->trigger(self::EVENT_BEFORE_SAVE, $event);
 
             foreach ($model->toArray() as $key => $value) {
-                Yii::$app->settings->set($model->formName(), $key, $value);
+                Yii::$app->settings->set(get_class($model), $key, $value);
             }
 
             $this->trigger(self::EVENT_AFTER_SAVE, $event);
@@ -118,7 +118,7 @@ class SettingsAction extends Action
             call_user_func($this->prepareModel, $model);
         } else {
             foreach ($model->attributes() as $attribute) {
-                $model->{$attribute} = Yii::$app->settings->get($model->formName(), $attribute);
+                $model->{$attribute} = Yii::$app->settings->get(get_class($model), $attribute);
             }
         }
     }
