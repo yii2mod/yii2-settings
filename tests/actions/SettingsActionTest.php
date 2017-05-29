@@ -3,6 +3,7 @@
 namespace yii2mod\settings\tests\actions;
 
 use Yii;
+use yii\base\Model;
 use yii2mod\settings\actions\SettingsAction;
 use yii2mod\settings\tests\data\ConfigurationForm;
 use yii2mod\settings\tests\TestCase;
@@ -59,6 +60,31 @@ class SettingsActionTest extends TestCase
 
         $this->assertEquals($response['params']['model']->appName, 'test-value');
         $this->assertEquals($response['params']['model']->adminEmail, 'test-value');
+    }
+
+    public function testSaveSettingsCallback()
+    {
+        $form = new ConfigurationForm();
+
+        Yii::$app->request->setUrl('index');
+        Yii::$app->request->bodyParams = [
+            'ConfigurationForm' => [
+                'appName' => 'my-app',
+                'adminEmail' => 'admin@example.org',
+            ],
+        ];
+
+        $this->runAction([
+            'modelClass' => ConfigurationForm::class,
+            'saveSettings' => function (Model $model) {
+                foreach ($model->toArray() as $key => $value) {
+                    Yii::$app->settings->set(get_class($model), $key, $value);
+                }
+            },
+        ]);
+
+        $this->assertEquals(Yii::$app->settings->get(get_class($form), 'appName'), 'my-app');
+        $this->assertEquals(Yii::$app->settings->get(get_class($form), 'adminEmail'), 'admin@example.org');
     }
 
     /**
