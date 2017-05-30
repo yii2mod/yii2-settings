@@ -85,7 +85,7 @@ class SettingsAction extends Action
     /**
      * @var array additional view params
      */
-    public $viewParams = array();
+    public $viewParams = [];
 
     /**
      * {@inheritdoc}
@@ -108,7 +108,7 @@ class SettingsAction extends Action
     {
         /* @var $model Model */
         $model = Yii::createObject($this->modelClass);
-        $event = Yii::createObject(array('class' => FormEvent::class, 'form' => $model));
+        $event = Yii::createObject(['class' => FormEvent::class, 'form' => $model]);
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $this->trigger(self::EVENT_BEFORE_SAVE, $event);
@@ -126,9 +126,9 @@ class SettingsAction extends Action
 
         $this->prepareModel($model);
 
-        return $this->controller->render($this->view, ArrayHelper::merge($this->viewParams, array(
+        return $this->controller->render($this->view, ArrayHelper::merge($this->viewParams, [
             'model' => $model,
-        )));
+        ]));
     }
 
     /**
