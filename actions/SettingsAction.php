@@ -60,6 +60,11 @@ class SettingsAction extends Action
     public $prepareModel;
 
     /**
+     * @var string
+     */
+    public $sectionSettings;
+
+    /**
      * @var string message to be set on successful save a model
      */
     public $successMessage = 'Settings have been saved successfully.';
@@ -129,7 +134,7 @@ class SettingsAction extends Action
             call_user_func($this->prepareModel, $model);
         } else {
             foreach ($model->attributes() as $attribute) {
-                $model->{$attribute} = Yii::$app->settings->get($model->formName(), $attribute);
+                $model->{$attribute} = Yii::$app->settings->get($model->getSection($model), $attribute);
             }
         }
     }
@@ -143,8 +148,20 @@ class SettingsAction extends Action
             call_user_func($this->saveSettings, $model);
         } else {
             foreach ($model->toArray() as $key => $value) {
-                Yii::$app->settings->set($model->formName(), $key, $value);
+                Yii::$app->settings->set($model->getSection($model), $key, $value);
             }
         }
+    }
+
+    /**
+     * @param Model $model
+     * @return string
+     */
+    protected function getSection(Model $model)
+    {
+        if($this->sectionSettings) {
+            return $this->sectionSettings;
+        }
+        return $model->formName();
     }
 }
