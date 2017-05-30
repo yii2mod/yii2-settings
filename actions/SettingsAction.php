@@ -1,15 +1,5 @@
 <?php
 
-/*
- * This file is part of PHP CS Fixer.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
-
 namespace yii2mod\settings\actions;
 
 use Yii;
@@ -20,7 +10,9 @@ use yii\helpers\ArrayHelper;
 use yii2mod\settings\events\FormEvent;
 
 /**
- * Class SettingsAction.
+ * Class SettingsAction
+ *
+ * @package yii2mod\settings\actions
  */
 class SettingsAction extends Action
 {
@@ -43,8 +35,8 @@ class SettingsAction extends Action
 
     /**
      * @var callable a PHP callable that will be called for save the settings.
-     *               If not set, [[saveSettings()]] will be used instead.
-     *               The signature of the callable should be:
+     * If not set, [[saveSettings()]] will be used instead.
+     * The signature of the callable should be:
      *
      * ```php
      * function ($model) {
@@ -56,8 +48,8 @@ class SettingsAction extends Action
 
     /**
      * @var callable a PHP callable that will be called to prepare a model.
-     *               If not set, [[prepareModel()]] will be used instead.
-     *               The signature of the callable should be:
+     * If not set, [[prepareModel()]] will be used instead.
+     * The signature of the callable should be:
      *
      * ```php
      * function ($model) {
@@ -70,7 +62,7 @@ class SettingsAction extends Action
     /**
      * @var string
      */
-    public $sectionSettings;
+    public $sectionName;
 
     /**
      * @var string message to be set on successful save a model
@@ -88,7 +80,7 @@ class SettingsAction extends Action
     public $viewParams = [];
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function init()
     {
@@ -168,8 +160,8 @@ class SettingsAction extends Action
      */
     protected function getSection(Model $model)
     {
-        if ($this->sectionSettings) {
-            return $this->sectionSettings;
+        if ($this->sectionName !== null) {
+            return $this->sectionName;
         }
 
         return $model->formName();
