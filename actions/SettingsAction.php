@@ -1,5 +1,15 @@
 <?php
 
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace yii2mod\settings\actions;
 
 use Yii;
@@ -10,9 +20,7 @@ use yii\helpers\ArrayHelper;
 use yii2mod\settings\events\FormEvent;
 
 /**
- * Class SettingsAction
- *
- * @package yii2mod\settings\actions
+ * Class SettingsAction.
  */
 class SettingsAction extends Action
 {
@@ -35,8 +43,8 @@ class SettingsAction extends Action
 
     /**
      * @var callable a PHP callable that will be called for save the settings.
-     * If not set, [[saveSettings()]] will be used instead.
-     * The signature of the callable should be:
+     *               If not set, [[saveSettings()]] will be used instead.
+     *               The signature of the callable should be:
      *
      * ```php
      * function ($model) {
@@ -48,8 +56,8 @@ class SettingsAction extends Action
 
     /**
      * @var callable a PHP callable that will be called to prepare a model.
-     * If not set, [[prepareModel()]] will be used instead.
-     * The signature of the callable should be:
+     *               If not set, [[prepareModel()]] will be used instead.
+     *               The signature of the callable should be:
      *
      * ```php
      * function ($model) {
@@ -77,10 +85,10 @@ class SettingsAction extends Action
     /**
      * @var array additional view params
      */
-    public $viewParams = [];
+    public $viewParams = array();
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init()
     {
@@ -100,7 +108,7 @@ class SettingsAction extends Action
     {
         /* @var $model Model */
         $model = Yii::createObject($this->modelClass);
-        $event = Yii::createObject(['class' => FormEvent::class, 'form' => $model]);
+        $event = Yii::createObject(array('class' => FormEvent::class, 'form' => $model));
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $this->trigger(self::EVENT_BEFORE_SAVE, $event);
@@ -118,13 +126,13 @@ class SettingsAction extends Action
 
         $this->prepareModel($model);
 
-        return $this->controller->render($this->view, ArrayHelper::merge($this->viewParams, [
+        return $this->controller->render($this->view, ArrayHelper::merge($this->viewParams, array(
             'model' => $model,
-        ]));
+        )));
     }
 
     /**
-     * Prepares the model which will be used to validate the attributes
+     * Prepares the model which will be used to validate the attributes.
      *
      * @param Model $model
      */
@@ -155,13 +163,15 @@ class SettingsAction extends Action
 
     /**
      * @param Model $model
+     *
      * @return string
      */
     protected function getSection(Model $model)
     {
-        if($this->sectionSettings) {
+        if ($this->sectionSettings) {
             return $this->sectionSettings;
         }
+
         return $model->formName();
     }
 }
