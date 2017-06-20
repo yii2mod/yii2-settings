@@ -142,7 +142,10 @@ class SettingsAction extends Action
             call_user_func($this->prepareModel, $model);
         } else {
             foreach ($model->attributes() as $attribute) {
-                $model->{$attribute} = Yii::$app->settings->get($this->getSection($model), $attribute);
+                $value = Yii::$app->settings->get($this->getSection($model), $attribute);
+                if (!is_null($value)) {
+                    $model->{$attribute} = $value;
+                }
             }
         }
     }
