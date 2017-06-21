@@ -27,7 +27,7 @@ class SettingModel extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%setting}}';
     }
@@ -35,7 +35,7 @@ class SettingModel extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['section', 'key', 'value'], 'required'],
@@ -52,7 +52,7 @@ class SettingModel extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => Yii::t('yii2mod.settings', 'ID'),
@@ -70,7 +70,7 @@ class SettingModel extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             TimestampBehavior::class,
@@ -82,7 +82,7 @@ class SettingModel extends ActiveRecord
      *
      * @return SettingQuery
      */
-    public static function find()
+    public static function find(): SettingQuery
     {
         return new SettingQuery(get_called_class());
     }
@@ -90,7 +90,7 @@ class SettingModel extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function afterDelete()
+    public function afterDelete(): void
     {
         parent::afterDelete();
 
@@ -100,7 +100,7 @@ class SettingModel extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function afterSave($insert, $changedAttributes)
+    public function afterSave($insert, $changedAttributes): void
     {
         parent::afterSave($insert, $changedAttributes);
 
@@ -112,7 +112,7 @@ class SettingModel extends ActiveRecord
      *
      * @return array
      */
-    public function getSettings()
+    public function getSettings(): array
     {
         $result = [];
         $settings = static::find()->select(['type', 'section', 'key', 'value'])->active()->asArray()->all();
@@ -142,7 +142,7 @@ class SettingModel extends ActiveRecord
      *
      * @return bool
      */
-    public function setSetting($section, $key, $value, $type = null)
+    public function setSetting($section, $key, $value, $type = null): bool
     {
         $model = static::findOne(['section' => $section, 'key' => $key]);
 
@@ -189,7 +189,7 @@ class SettingModel extends ActiveRecord
      *
      * @return int
      */
-    public function removeAllSettings()
+    public function removeAllSettings(): int
     {
         return static::deleteAll();
     }
@@ -202,7 +202,7 @@ class SettingModel extends ActiveRecord
      *
      * @return bool
      */
-    public function activateSetting($section, $key)
+    public function activateSetting($section, $key): bool
     {
         $model = static::findOne(['section' => $section, 'key' => $key]);
 
@@ -223,7 +223,7 @@ class SettingModel extends ActiveRecord
      *
      * @return bool
      */
-    public function deactivateSetting($section, $key)
+    public function deactivateSetting($section, $key): bool
     {
         $model = static::findOne(['section' => $section, 'key' => $key]);
 

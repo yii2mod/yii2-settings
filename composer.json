@@ -11,12 +11,12 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Igor Chepurnoy",
-            "email": "igorzfort@gmail.com"
+            "name": "Igor Chepurnoi",
+            "email": "chepurnoi.igor@gmail.com"
         }
     ],
     "require": {
-        "php": ">=5.5",
+        "php": ">=7.1",
         "yiisoft/yii2": ">=2.0.8",
         "yii2mod/yii2-editable": "*",
         "yii2mod/yii2-enum": "*"

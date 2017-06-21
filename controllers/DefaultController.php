@@ -46,7 +46,7 @@ class DefaultController extends Controller
      *
      * @return array
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             'verbs' => [
@@ -66,7 +66,7 @@ class DefaultController extends Controller
      *
      * @return array
      */
-    public function actions()
+    public function actions(): array
     {
         return [
             'edit-setting' => [
@@ -124,7 +124,7 @@ class DefaultController extends Controller
      *
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdate(int $id)
     {
         $model = $this->findModel($id);
 
@@ -148,7 +148,7 @@ class DefaultController extends Controller
      *
      * @return mixed
      */
-    public function actionDelete($id)
+    public function actionDelete(int $id)
     {
         $this->findModel($id)->delete();
         Yii::$app->session->setFlash('success', Yii::t('yii2mod.settings', 'Setting has been deleted.'));
@@ -167,7 +167,7 @@ class DefaultController extends Controller
      *
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel(int $id)
     {
         $settingModelClass = $this->modelClass;
 

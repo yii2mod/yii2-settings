@@ -20,7 +20,7 @@ class SettingSearch extends SettingModel
     /**
      * @inheritdoc
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['type', 'section', 'key', 'value', 'status', 'description'], 'safe'],
@@ -34,7 +34,7 @@ class SettingSearch extends SettingModel
      *
      * @return ActiveDataProvider
      */
-    public function search(array $params)
+    public function search(array $params): ActiveDataProvider
     {
         $query = self::find();
 

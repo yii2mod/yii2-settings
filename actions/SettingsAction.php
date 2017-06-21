@@ -82,7 +82,7 @@ class SettingsAction extends Action
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
 
@@ -128,13 +128,14 @@ class SettingsAction extends Action
      *
      * @param Model $model
      */
-    protected function prepareModel(Model $model)
+    protected function prepareModel(Model $model): void
     {
         if (is_callable($this->prepareModel)) {
             call_user_func($this->prepareModel, $model);
         } else {
             foreach ($model->attributes() as $attribute) {
                 $value = Yii::$app->settings->get($this->getSection($model), $attribute);
+
                 if (!is_null($value)) {
                     $model->{$attribute} = $value;
                 }
@@ -145,7 +146,7 @@ class SettingsAction extends Action
     /**
      * @param Model $model
      */
-    protected function saveSettings(Model $model)
+    protected function saveSettings(Model $model): void
     {
         if (is_callable($this->saveSettings)) {
             call_user_func($this->saveSettings, $model);
@@ -161,7 +162,7 @@ class SettingsAction extends Action
      *
      * @return string
      */
-    protected function getSection(Model $model)
+    protected function getSection(Model $model): string
     {
         if ($this->sectionName !== null) {
             return $this->sectionName;

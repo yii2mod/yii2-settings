@@ -20,7 +20,7 @@ class FormEvent extends Event
     /**
      * @return Model
      */
-    public function getForm()
+    public function getForm(): Model
     {
         return $this->_form;
     }
@@ -28,7 +28,7 @@ class FormEvent extends Event
     /**
      * @param Model $form
      */
-    public function setForm(Model $form)
+    public function setForm(Model $form): void
     {
         $this->_form = $form;
     }
