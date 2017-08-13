@@ -45,30 +45,24 @@ php yii migrate --migrationPath=@vendor/yii2mod/yii2-settings/migrations
 
 To access the module, you need to configure the modules array in your application configuration:
 ```php
-'admin' => [
     'modules' => [
         'settings' => [
             'class' => 'yii2mod\settings\Module',
-            // Also you can override some controller properties in following way:
-            'controllerMap' => [
-                'default' => [
-                    'class' => 'yii2mod\settings\controllers\DefaultController',
-                    'searchClass' => [
-                        'class' => 'yii2mod\settings\models\search\SettingSearch',
-                        'pageSize' => 25
-                    ],
-                    'modelClass' => 'Your own model class',
-                    'indexView' => 'custom path to index view file',
-                    'createView' => 'custom path to create view file',
-                    'updateView' => 'custom path to update view file',
-                ]
-            ]
         ],
     ],
-]
 ```    
-> You can then access settings page by the following URL:
-http://localhost/path/to/index.php?r=admin/settings/
+
+You can then access settings management section through the following URL:
+
+```
+http://localhost/path/to/index.php?r=settings
+```
+
+or if you have enabled pretty URLs, you may use the following URL:
+
+```
+http://localhost/path/to/index.php/settings
+```
 
 **Component Setup**
 
