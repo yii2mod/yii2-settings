@@ -24,7 +24,7 @@ php composer.phar require --prefer-dist yii2mod/yii2-settings "*"
 
 or add
 
-```json
+```
 "yii2mod/yii2-settings": "*"
 ```
 
@@ -45,11 +45,11 @@ php yii migrate --migrationPath=@vendor/yii2mod/yii2-settings/migrations
 
 To access the module, you need to configure the modules array in your application configuration:
 ```php
-    'modules' => [
-        'settings' => [
-            'class' => 'yii2mod\settings\Module',
-        ],
+'modules' => [
+    'settings' => [
+        'class' => 'yii2mod\settings\Module',
     ],
+],
 ```    
 
 You can then access settings management section through the following URL:
@@ -72,7 +72,7 @@ To use the Setting Component, you need to configure the components array in your
     'settings' => [
         'class' => 'yii2mod\settings\components\Settings',
     ],
-]
+],
 ```
     
 Usage:
