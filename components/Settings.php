@@ -55,7 +55,7 @@ class Settings extends Component
     /**
      * Initialize the component
      */
-    public function init(): void
+    public function init()
     {
         parent::init();
 
@@ -223,7 +223,7 @@ class Settings extends Component
      *
      * @param $type
      */
-    protected function convertSettingType($type): void
+    protected function convertSettingType($type)
     {
         if ($type === SettingType::BOOLEAN_TYPE) {
             $this->setting = filter_var($this->setting, FILTER_VALIDATE_BOOLEAN);
