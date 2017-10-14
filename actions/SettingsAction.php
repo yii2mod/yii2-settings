@@ -82,7 +82,7 @@ class SettingsAction extends Action
     /**
      * @inheritdoc
      */
-    public function init(): void
+    public function init()
     {
         parent::init();
 
@@ -128,7 +128,7 @@ class SettingsAction extends Action
      *
      * @param Model $model
      */
-    protected function prepareModel(Model $model): void
+    protected function prepareModel(Model $model)
     {
         if (is_callable($this->prepareModel)) {
             call_user_func($this->prepareModel, $model);
@@ -146,7 +146,7 @@ class SettingsAction extends Action
     /**
      * @param Model $model
      */
-    protected function saveSettings(Model $model): void
+    protected function saveSettings(Model $model)
     {
         if (is_callable($this->saveSettings)) {
             call_user_func($this->saveSettings, $model);

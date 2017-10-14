@@ -28,7 +28,7 @@ class FormEvent extends Event
     /**
      * @param Model $form
      */
-    public function setForm(Model $form): void
+    public function setForm(Model $form)
     {
         $this->_form = $form;
     }

@@ -90,7 +90,7 @@ class SettingModel extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function afterDelete(): void
+    public function afterDelete()
     {
         parent::afterDelete();
 
@@ -100,7 +100,7 @@ class SettingModel extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function afterSave($insert, $changedAttributes): void
+    public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
 
