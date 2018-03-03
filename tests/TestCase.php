@@ -5,6 +5,7 @@ namespace yii2mod\settings\tests;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii2mod\settings\tests\data\Controller;
+use yii2mod\settings\tests\data\Session;
 
 /**
  * This is the base class for all yii framework unit tests.
@@ -41,6 +42,9 @@ class TestCase extends \PHPUnit\Framework\TestCase
                 'db' => [
                     'class' => 'yii\db\Connection',
                     'dsn' => 'sqlite::memory:',
+                ],
+                'session' => [
+                    'class' => Session::class,
                 ],
                 'request' => [
                     'hostInfo' => 'http://domain.com',
