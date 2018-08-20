@@ -12,14 +12,14 @@ Persistent, application-wide settings for Yii2.
 [![Build Status](https://travis-ci.org/yii2mod/yii2-settings.svg?branch=master)](https://travis-ci.org/yii2mod/yii2-settings)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yii2mod/yii2-settings/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yii2mod/yii2-settings/?branch=master)
 
-Installation   
+Installation
 ------------
 
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
 
 Either run
 
-```
+```sh
 php composer.phar require --prefer-dist yii2mod/yii2-settings "*"
 ```
 
@@ -38,7 +38,7 @@ Configuration
 
 Before usage this extension, we'll also need to prepare the database.
 
-```
+```sh
 php yii migrate --migrationPath=@vendor/yii2mod/yii2-settings/migrations
 ```
 
@@ -51,7 +51,7 @@ To access the module, you need to configure the modules array in your applicatio
         'class' => 'yii2mod\settings\Module',
     ],
 ],
-```    
+```
 
 You can then access settings management section through the following URL:
 
@@ -75,7 +75,7 @@ To use the Setting Component, you need to configure the components array in your
     ],
 ],
 ```
-    
+
 Usage:
 ---------
 ```php
@@ -102,13 +102,13 @@ $settings->remove('section', 'key');
 // Removes all settings
 $settings->removeAll();
 
-$settings->invalidateCache(); // automatically called on set(), remove();  
+$settings->invalidateCache(); // automatically called on set(), remove();
 ```
 
 Manage custom settings
 ----------------------
 
-You can use your own form model to manage custom settings for your web application via `SettingsAction`. 
+You can use your own form model to manage custom settings for your web application via `SettingsAction`.
 To use the `SettingsAction` class you need to follow the following steps:
 
 1) Create your own model, for example:
@@ -220,7 +220,7 @@ class SiteController extends Controller
 ```
 
 *Now you can access to the settings page by the following URL: http://localhost/path/to/index.php?r=site/manage-settings/*
-                       
+
 
 
 Internationalization
