@@ -67,6 +67,28 @@ class Settings extends Component
     }
 
     /**
+     * Get's all values in the specific section.
+     *
+     * @param string $section
+     * @param null $default
+     *
+     * @return mixed
+     */
+    public function getAllBySection($section, $default = null)
+    {
+        $items = $this->getSettingsConfig();
+
+        if (isset($items[$section])) {
+            $this->setting = ArrayHelper::getColumn($items[$section], 'value');
+        } else {
+            $this->setting = $default;
+        }
+
+
+        return $this->setting;
+    }
+
+    /**
      * Get's the value for the given section and key.
      *
      * @param string $section
