@@ -103,7 +103,7 @@ $settings->remove('section', 'key');
 $settings->removeAll();
 
 // Get's all values in the specific section.
-$settings->getAllBySection('admin');
+$settings->getAllBySection('section');
 
 $settings->invalidateCache(); // automatically called on set(), remove();
 ```
