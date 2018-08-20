@@ -32,9 +32,9 @@ class SettingsTest extends TestCase
         $settings = Yii::$app->settings->getAllBySection('admin');
 
         $this->assertCount(3, $settings, 'Wrong settings count!');
-        $this->assertEquals( 'admin@mail.com', $settings['email']);
-        $this->assertEquals( 'admin', $settings['username']);
-        $this->assertEquals( 'http://example.org', $settings['website']);
+        $this->assertEquals('admin@mail.com', $settings['email']);
+        $this->assertEquals('admin', $settings['username']);
+        $this->assertEquals('http://example.org', $settings['website']);
         $this->assertNull(Yii::$app->settings->getAllBySection('not-existed'));
     }
 

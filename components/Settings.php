@@ -84,7 +84,6 @@ class Settings extends Component
             $this->setting = $default;
         }
 
-
         return $this->setting;
     }
 
