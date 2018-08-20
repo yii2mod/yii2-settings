@@ -23,6 +23,21 @@ class SettingsTest extends TestCase
         $this->assertEquals('admin@mail.com', Yii::$app->settings->get('admin', 'email'), 'Wrong setting name!');
     }
 
+    public function testGetAllSettingsBySection()
+    {
+        Yii::$app->settings->set('admin', 'email', 'admin@mail.com');
+        Yii::$app->settings->set('admin', 'username', 'admin');
+        Yii::$app->settings->set('admin', 'website', 'http://example.org');
+
+        $settings = Yii::$app->settings->getAllBySection('admin');
+
+        $this->assertCount(3, $settings, 'Wrong settings count!');
+        $this->assertEquals('admin@mail.com', $settings['email']);
+        $this->assertEquals('admin', $settings['username']);
+        $this->assertEquals('http://example.org', $settings['website']);
+        $this->assertNull(Yii::$app->settings->getAllBySection('not-existed'));
+    }
+
     public function testRemoveSetting()
     {
         Yii::$app->settings->set('admin', 'email', 'admin@mail.com');

@@ -102,6 +102,9 @@ $settings->remove('section', 'key');
 // Removes all settings
 $settings->removeAll();
 
+// Get's all values in the specific section.
+$settings->getAllBySection('admin');
+
 $settings->invalidateCache(); // automatically called on set(), remove();
 ```
 
