@@ -13,4 +13,5 @@ class Module extends \yii\base\Module
      * @var string the namespace that controller classes are in
      */
     public $controllerNamespace = 'yii2mod\settings\controllers';
+    public $settings;
 }
